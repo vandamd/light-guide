@@ -1,0 +1,65 @@
+---
+layout: ../layouts/Guide.astro
+title: "Activate root"
+description: "Give the ADB shell temporary root access with Prism."
+---
+
+import InstallPrism from '../components/InstallPrism.astro';
+import StartShizuku from '../components/StartShizuku.astro';
+import CheckRoot from '../components/CheckRoot.astro';
+import Card from '../components/Card.astro';
+
+Requirements:
+- Light Phone III (TLP301, firmware 00WW_1_440000).
+- LightOS v582 or later.
+- Desktop Chrome or Edge.
+
+<div class="usb-tool install-steps" data-tool="activate-root">
+<section>
+
+## 1. Enable USB debugging
+
+1. In the Phone tool, dial `*7412369#`.
+2. Open Settings → Debug and enable Android Dev Mode.
+3. In Android's Developer options, enable USB debugging.
+
+</section>
+<section>
+
+## 2. Install Prism
+
+Connect the phone to your computer. Select it below and accept the USB debugging prompt on the phone.
+
+<InstallPrism />
+
+</section>
+<section>
+
+## 3. Start Shizuku
+
+In Prism, install Shizuku when prompted. Then select your phone below to start it over USB.
+
+<StartShizuku />
+
+</section>
+<section>
+
+## 4. Activate root
+
+1. In Prism, install ReSukiSU when prompted and allow access when Shizuku asks.
+2. Tap Root. Wait for Prism to return automatically and show Root Status: Active.
+3. In ReSukiSU, open Superuser, find Shell, and enable its superuser access.
+
+</section>
+<section>
+
+## 5. Check root access
+
+Prism's root access ends when the phone restarts. Keep it running for the next step.
+
+<CheckRoot />
+
+<Card title="Continue to Web Install" href="/web-install" />
+
+</section>
+</div>

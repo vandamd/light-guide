@@ -1,0 +1,27 @@
+---
+layout: ../layouts/Guide.astro
+title: "Restore stock firmware"
+description: "Return from LightOS with root or LineageOS to stock LightOS."
+---
+
+import Warning from '../components/Warning.astro';
+import WebFlash from '../components/WebFlash.astro';
+
+What this can do:
+- Restore stock LightOS from this guide's LightOS with root or LineageOS.
+- Restore the active slot, including the original system image when returning from LineageOS.
+- Optionally relock the bootloader after verifying the restoration.
+
+Requirements:
+- Light Phone III (TLP301, firmware 00WW_1_440000).
+- Unlocked bootloader.
+- Root and Shell access granted in ReSukiSU.
+- Desktop Chrome or Edge.
+
+<Warning>
+Returning from LineageOS and optional relocking erase your data. Back up first. Complete the recovery factory reset when prompted.
+</Warning>
+
+<div id="install">
+<WebFlash target="stock" />
+</div>

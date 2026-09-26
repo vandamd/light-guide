@@ -1,0 +1,28 @@
+---
+layout: ../layouts/Guide.astro
+title: "Introduction"
+description: "Unlock the bootloader on your Light Phone III."
+---
+
+import Warning from '../components/Warning.astro';
+import Card from '../components/Card.astro';
+
+<Warning>
+This is an early preview. Please be careful!
+
+By proceeding, you acknowledge that you could brick your device!
+
+Unlocking the bootloader will factory-reset the phone. Please back up your data.
+
+This is not affiliated or recommended by Light.
+</Warning>
+
+Normally, enabling OEM unlocking in Developer options lets you request a bootloader unlock using fastboot.
+
+On the Light Phone III, there is another check: the bootloader also expects manufacturer authorisation.
+
+That extra check has a flaw. It accepts a signed unlock file without properly checking who issued the certificate used to sign it. We can create a file specifically for your phone that passes the check.
+
+This guide uses Prism for temporary root access to place that file on the phone. After restarting into fastboot, you can use the normal unlock command and confirm on the phone.
+
+<Card title="Get started" href="/activate-root" />

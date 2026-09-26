@@ -1,0 +1,71 @@
+---
+import Warning from './Warning.astro';
+const { target = 'custom', offset = 0 } = Astro.props;
+---
+<div class="usb-tool install-steps" data-tool="web-flash" data-target={target}>
+<section><h2>{offset + 1}. Download the release</h2>
+{target === 'custom' ? (
+<fieldset class="release-options" aria-label="Choose a release">
+<label><input type="radio" name="release" value="custom" checked /> <span>Stock (with LightOS) with ReSukiSU and SUSFS</span></label>
+<label><input type="radio" name="release" value="lineage" /> <span>LineageOS with ReSukiSU and SUSFS (experimental)</span></label>
+</fieldset>
+) : <p>Includes the original LightOS system, boot and verification images.</p>}
+<button id="download">Download release</button>
+<div id="status-1" class="step-status" role="status" aria-live="polite" hidden></div>
+</section>
+<section><h2>{offset + 2}. Enter fastboot</h2>
+<p>Connect the phone with USB debugging and {target === 'custom' ? 'Prism root active' : 'Shell root access granted in ReSukiSU'}. The tool checks the installed firmware and restarts into fastboot.</p>
+<button id="enter-fastboot">Enter fastboot</button>
+<div id="status-3" class="step-status" role="status" aria-live="polite" hidden></div>
+</section>
+<section><h2>{offset + 3}. {target === 'custom' ? 'Flash the release' : 'Restore LightOS'}</h2>
+<p>Select your phone again in fastboot. Keep the phone connected while installing.</p>
+<div class="actions">
+<button id="install-release">{target === 'custom' ? 'Select device and flash release' : 'Select device and restore LightOS'}</button>
+<button id="flash-part-2" class="secondary" hidden>Part 2</button>
+<button id="flash-part-3" class="secondary" hidden>Part 3</button>
+<button id="flash-part-4" class="secondary" hidden>Part 4</button>
+</div>
+<div id="status-2" class="step-status" role="status" aria-live="polite" hidden></div>
+</section>
+<section id="configure-row">
+<h2>{offset + 4}. {target === 'custom' ? 'Set up ReSukiSU' : 'Set up and verify stock LightOS'}</h2>
+{target === 'custom' ? <p>Verifies the installation, installs microG and its required modules, and removes Prism and Shizuku.</p> : <ol>
+<li>Once LightOS starts, connect to Wi-Fi and update LightOS to v582 or later.</li>
+<li>In the Phone tool, dial <code>*7412369#</code>.</li>
+<li>Open Settings → Debug and enable Android Dev Mode, then enable USB debugging in Android's Developer options.</li>
+<li><a href="/activate-root">Activate Prism root</a> and grant Shell access in ReSukiSU.</li>
+<li>Connect the phone and verify the restored firmware below.</li>
+</ol>}
+<div class="actions">
+<button id="configure">{target === 'custom' ? 'Set up and verify ReSukiSU' : 'Verify stock LightOS'}</button>
+{target === 'custom' && <>
+<button id="configure-part-2" class="secondary" hidden>Part 2</button>
+<button id="configure-part-3" class="secondary" hidden>Part 3</button>
+<button id="configure-part-4" class="secondary" hidden>Part 4</button>
+<button id="configure-part-5" class="secondary" hidden>Part 5</button>
+</>}
+</div>
+<div id="status-5" class="step-status" role="status" aria-live="polite" hidden></div>
+</section>
+{target === 'stock' && (
+<>
+<section id="relock-options">
+    <Warning><p>Continue with the next two steps only if you want to relock the bootloader.<br /><br /> A future firmware update could patch the unlock method and prevent you from unlocking it again.</p></Warning>
+</section>
+<section><h2>{offset + 5}. Enter fastboot to relock</h2>
+<p>Connect the phone with Prism root and Shell access. The tool verifies stock firmware before restarting into fastboot.</p>
+<button id="lock">Check stock and enter fastboot</button>
+<div id="status-6" class="step-status" role="status" aria-live="polite" hidden></div>
+</section>
+<section><h2>{offset + 6}. Relock the bootloader</h2>
+<p>Select your phone again in fastboot. Press Volume Down once, then the lock button to confirm. Relocking erases your data and restarts the phone into LightOS.</p>
+<button id="confirm-lock">Select device and relock</button>
+<div id="status-7" class="step-status" role="status" aria-live="polite" hidden></div>
+</section>
+</>
+)}
+</div>
+<script>
+  import '../webusb/flash.js';
+</script>

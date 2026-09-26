@@ -1,0 +1,15 @@
+<div class="usb-tool install-steps" data-tool="webusb">
+<section><h2>1. Activate Fastboot</h2>
+<p>This requires root and shell access granted in the previous step. It will download a partition backup, prepare the unlock and restart the phone into fastboot.</p>
+<button id="unlock-primary">Activate Fastboot</button>
+<div id="unlock-status" class="step-status" role="status" aria-live="polite" hidden></div>
+</section>
+<section><h2>2. Unlock the bootloader</h2>
+<p>Select your phone again in fastboot. Press Volume Down once, then press the lock button on your phone. Your phone will reboot into LightOS. Unlocking erases your data.</p>
+<button id="unlock-request">Select phone and unlock</button>
+<div id="unlock-fastboot-status" class="step-status" role="status" aria-live="polite" hidden></div>
+</section>
+</div>
+<script>
+  import '../webusb/app.js';
+</script>

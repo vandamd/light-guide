@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import regularFont from '@fontsource/public-sans/files/public-sans-latin-400-normal.woff2?url';
+import { pages } from '../lib/navigation';
+
+interface Props {
+  frontmatter: { title: string; description: string };
+}
+const { frontmatter } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={frontmatter.description} />
+    <meta name="color-scheme" content="dark" />
+    <link rel="preload" href={regularFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/ioskeley-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="icon" type="image/png" sizes="100x100" href="/images/favicon.png" />
+    <title>{frontmatter.title} — Light Guide</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <div class="site-panel">
+      <nav class="guide-nav" aria-label="Guide">
+        {pages.map(page => <a href={page.href} aria-current={currentPath === page.href ? 'page' : undefined}>{page.title}</a>)}
+      </nav>
+      <main id="content">
+        <div class="site-intro">
+          <h1>{frontmatter.title}</h1>
+        </div>
+        <article><slot /></article>
+      </main>
+    </div>
+  </body>
+</html>
+<script>
+  for (const pre of document.querySelectorAll('pre')) {
+    const code = pre.querySelector('code');
+    if (!code) continue;
+    const button = document.createElement('button');
+    button.className = 'copy-code secondary';
+    button.textContent = 'Copy';
+    button.setAttribute('aria-label', 'Copy command');
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(code.textContent ?? '');
+        button.textContent = 'Copied';
+      } catch {
+        button.textContent = 'Select and copy';
+      }
+      setTimeout(() => { button.textContent = 'Copy'; }, 2000);
+    });
+    pre.append(button);
+  }
+</script>

@@ -1,0 +1,13 @@
+node_modules/
+.mintlify/
+.DS_Store
+__pycache__/
+light-unlock-*/
+*.img
+*.bin
+*.pem
+dist/
+.astro/
+.wrangler/
+
+.release-assets/

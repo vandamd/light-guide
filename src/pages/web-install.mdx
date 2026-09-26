@@ -1,0 +1,44 @@
+---
+layout: ../layouts/Guide.astro
+title: "Web Install"
+description: "Install LightOS or LineageOS with ReSukiSU + SUSFS."
+---
+
+import Warning from '../components/Warning.astro';
+import WebUnlock from '../components/WebUnlock.astro';
+import WebFlash from '../components/WebFlash.astro';
+
+What this can do:
+- Install LightOS with ReSukiSU + SUSFS
+- Install LineageOS 23.2 (Android 16) with ReSukiSU + SUSFS
+
+Requirements:
+- Light Phone III (TLP301, firmware 00WW_1_440000).
+- Root and shell access granted from the [previous stage](/activate-root).
+- Desktop Chrome or Edge.
+
+<Warning>
+Unlocking and switching operating systems erase your data. Please back up first! The images were tested on a phone; this browser install/restore flow still needs end-to-end testing.
+
+NOTE: I've decided to keep the bootloader unlocked: a future firmware update could prevent unlocking it again if relocked.
+</Warning>
+
+<div id="unlock">
+<WebUnlock />
+</div>
+
+<div id="install">
+<div class="usb-tool install-steps">
+<section>
+
+## 3. Set up LightOS again
+
+1. Connect the phone to Wi-Fi and update LightOS to v582 or later.
+2. In the Phone tool, dial `*7412369#`.
+3. Open Settings → Debug and enable Android Dev Mode, then enable USB debugging in Android's Developer options.
+4. [Activate Prism root again](/activate-root) and grant Shell access in ReSukiSU.
+
+</section>
+</div>
+<WebFlash offset={3} />
+</div>

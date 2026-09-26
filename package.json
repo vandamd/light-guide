@@ -1,0 +1,24 @@
+{
+  "name": "light-guide",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "validate": "astro build",
+    "deploy": "bun run build && wrangler deploy"
+  },
+  "dependencies": {
+    "@yume-chan/adb": "2.6.4",
+    "@yume-chan/adb-credential-web": "2.1.0",
+    "@yume-chan/adb-daemon-webusb": "2.3.2",
+    "fflate": "0.8.3",
+    "astro": "7.3.2",
+    "@astrojs/mdx": "8.0.2",
+    "@fontsource/public-sans": "5.2.7"
+  },
+  "devDependencies": {
+    "wrangler": "4.141.0"
+  }
+}

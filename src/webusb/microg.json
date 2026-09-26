@@ -1,0 +1,78 @@
+[
+  {
+    "label": "NeoZygisk",
+    "id": "zygisksu",
+    "versionCode": "289",
+    "kind": "module",
+    "size": 2401208,
+    "sha256": "93a1425c67bb89f58a0dcb9fc823ec93f6472214f221e667a70b67c6a6e061a1",
+    "parts": [
+      "/files/microg/zygisksu-93a1425c67bb.part1"
+    ],
+    "source": "https://github.com/JingMatrix/NeoZygisk/releases/tag/v2.4"
+  },
+  {
+    "label": "Vector",
+    "id": "zygisk_vector",
+    "versionCode": "3080",
+    "kind": "module",
+    "size": 9316843,
+    "sha256": "9ee8323575d615f7b3f1076ff60b2a63a49390ef11881b52632311a37f6f79cc",
+    "parts": [
+      "/files/microg/zygisk_vector-9ee8323575d6.part1"
+    ],
+    "source": "https://github.com/JingMatrix/Vector/releases/tag/v2.2"
+  },
+  {
+    "label": "FakeGApps",
+    "id": "inc.whew.android.fakegapps",
+    "versionCode": "13",
+    "kind": "apk",
+    "size": 34207,
+    "sha256": "a74256c6a6fc15ed041dad76054b81bb74c4b6751e587dc88f9c959332f02446",
+    "parts": [
+      "/files/microg/inc.whew.android.fakegapps-a74256c6a6fc.part1"
+    ],
+    "source": "https://github.com/whew-inc/FakeGApps/releases/tag/6.6"
+  },
+  {
+    "label": "microG Services",
+    "id": "com.google.android.gms",
+    "versionCode": "252432032",
+    "kind": "apk",
+    "size": 108051947,
+    "sha256": "169a53df557e6577322e7cc8aa3389cb82b3d6408dd162433cc94f1d084a73d4",
+    "parts": [
+      "/files/microg/com.google.android.gms-169a53df557e.part1",
+      "/files/microg/com.google.android.gms-169a53df557e.part2",
+      "/files/microg/com.google.android.gms-169a53df557e.part3",
+      "/files/microg/com.google.android.gms-169a53df557e.part4",
+      "/files/microg/com.google.android.gms-169a53df557e.part5"
+    ],
+    "source": "https://github.com/microg/GmsCore/releases/tag/v0.3.16.252432"
+  },
+  {
+    "label": "microG Companion",
+    "id": "com.android.vending",
+    "versionCode": "84022632",
+    "kind": "apk",
+    "size": 4205370,
+    "sha256": "638f712d267bb9bc57311acbc49e769932bdea9f7fdda26a6ea98b921e632916",
+    "parts": [
+      "/files/microg/com.android.vending-638f712d267b.part1"
+    ],
+    "source": "https://github.com/microg/GmsCore/releases/tag/v0.3.16.252432"
+  },
+  {
+    "label": "microG Services Framework",
+    "id": "com.google.android.gsf",
+    "versionCode": "8",
+    "kind": "apk",
+    "size": 21872,
+    "sha256": "86891b174301f06a1c84187b545a0a2a57044c6b768f3e84e865908743349692",
+    "parts": [
+      "/files/microg/com.google.android.gsf-86891b174301.part1"
+    ],
+    "source": "https://github.com/microg/GsfProxy/releases/tag/v0.1.0"
+  }
+]

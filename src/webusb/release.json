@@ -1,0 +1,10 @@
+{
+  "name": "lightos-resukisu-susfs-00WW_1_440000-preview1",
+  "size": 69600640,
+  "sha256": "5d572d43324162746262da0b0f3a5013e620b88c783c52fc5ebc11ecd9a5ee38",
+  "parts": [
+    "/files/releases/lightos-resukisu-susfs-00WW_1_440000-preview1-5d572d433241.part1",
+    "/files/releases/lightos-resukisu-susfs-00WW_1_440000-preview1-5d572d433241.part2",
+    "/files/releases/lightos-resukisu-susfs-00WW_1_440000-preview1-5d572d433241.part3"
+  ]
+}
