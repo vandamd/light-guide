@@ -55,6 +55,7 @@ button.secondary { color: #fff; background: transparent; border-color: var(--bor
 button.secondary:hover:not(:disabled) { background: #262626; }
 .copy-code { flex-shrink: 0; font-size: 12px; padding: 2px 8px; }
 .warning { margin: 24px 0; padding: 4px 16px; border-left: 2px solid #d99a32; background: #382406; }
+.warning[data-variant='danger'] { background: #381616; border-left-color: #e07878; }
 .continue-link { display: flex; justify-content: space-between; gap: 16px; border: 1px solid var(--border); padding: 16px; margin-top: 16px; text-decoration: none; }
 .continue-link:hover { background: #222; }
 .usb-tool section { padding: var(--step-spacing) 0; border-top: 1px dashed var(--border); }

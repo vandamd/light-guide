@@ -35,7 +35,7 @@ button.addEventListener('click', async () => {
     if (text(await run(adb, 'id -u', true)) !== '0') {
       throw new Error('Shell does not have root access. Activate root in Prism and enable Shell in ReSukiSU, then retry.');
     }
-    notify('Root and Shell access verified. Continue to Web Install.', 'success');
+    notify('Root and Shell access verified. Continue to Install firmware.', 'success');
   } catch (error) {
     notify(error.message, 'error');
   } finally {

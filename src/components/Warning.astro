@@ -1,1 +1,7 @@
-<aside class="warning"><slot /></aside>
+---
+interface Props {
+  variant?: 'warning' | 'danger';
+}
+const { variant = 'warning' } = Astro.props;
+---
+<aside class="warning" data-variant={variant}><slot /></aside>

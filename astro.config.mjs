@@ -3,6 +3,7 @@ import mdx from '@astrojs/mdx';
 import systemRelease from './src/webusb/system-release.json';
 
 export default defineConfig({
+  site: 'https://root.noscroll.ing',
   redirects: {
     '/web-unlock': '/web-install#unlock',
     '/flashing': '/web-install#install',
