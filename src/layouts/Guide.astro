@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import regularFont from '@fontsource/public-sans/files/public-sans-latin-400-normal.woff2?url';
 import { pages } from '../lib/navigation';
+import { version } from '../../package.json';
 
 interface Props {
   frontmatter: { title: string; description: string };
@@ -47,10 +48,43 @@ const socialImage = new URL('/images/og.png', Astro.site ?? Astro.url);
         </div>
         <article><slot /></article>
       </main>
+      <footer class="site-footer">
+        <span><a href="https://discord.gg/J7wcDpYHxV">Discord</a> · v{version}</span>
+        <time class="liverpool-clock" data-liverpool-clock aria-label="Local time in Liverpool" hidden>
+          <span data-clock-hours></span><span data-clock-colon>:</span><span data-clock-minutes></span> IN LIVERPOOL
+        </time>
+      </footer>
     </div>
   </body>
 </html>
 <script>
+  const clock = document.querySelector<HTMLTimeElement>('[data-liverpool-clock]');
+  const hours = clock?.querySelector<HTMLElement>('[data-clock-hours]');
+  const minutes = clock?.querySelector<HTMLElement>('[data-clock-minutes]');
+  const colon = clock?.querySelector<HTMLElement>('[data-clock-colon]');
+
+  if (clock && hours && minutes && colon) {
+    const formatter = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/London',
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23',
+    });
+    const updateClock = () => {
+      const now = new Date();
+      const time = formatter.format(now);
+      const [hour, minute] = time.split(':');
+      hours.textContent = hour;
+      minutes.textContent = minute;
+      colon.style.opacity = now.getSeconds() % 2 === 0 ? '1' : '0';
+      clock.dateTime = now.toISOString();
+      clock.setAttribute('aria-label', time + ' in Liverpool');
+      clock.hidden = false;
+      window.setTimeout(updateClock, 1000 - Date.now() % 1000);
+    };
+    updateClock();
+  }
+
   for (const pre of document.querySelectorAll('pre')) {
     const code = pre.querySelector('code');
     if (!code) continue;

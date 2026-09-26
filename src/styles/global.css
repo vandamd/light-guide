@@ -31,7 +31,7 @@ button, input { font: inherit; }
 button, a, input { -webkit-tap-highlight-color: transparent; }
 :focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
 [hidden] { display: none !important; }
-.site-panel { max-width: 712px; margin-inline: auto; padding: 28px; background: #151515; outline: 1px solid var(--border); }
+.site-panel { max-width: 712px; margin-inline: auto; padding: 28px 28px 14px; background: #151515; outline: 1px solid var(--border); }
 .guide-nav { display: flex; flex-wrap: wrap; gap: 10px 22px; padding-bottom: 24px; margin-bottom: 32px; border-bottom: 1px dashed var(--border); }
 .guide-nav a { text-decoration: none; }
 .guide-nav a[aria-current='page'], .guide-nav a:hover { text-decoration: underline; }
@@ -43,6 +43,7 @@ p { margin: 16px 0; }
 ul, ol { padding-left: 22px; }
 li { margin-block: 8px; }
 article > :first-child { margin-top: 0; }
+article > :last-child { margin-bottom: 0; }
 code { font: 400 .85em/1.6 'Ioskeley Mono', monospace; overflow-wrap: anywhere; }
 :not(pre) > code { background: #262626; padding: 2px 4px; }
 pre { display: flex; align-items: flex-start; gap: 16px; margin: 16px 0; padding: 16px; border: 1px solid var(--border); background: #0c0c0c !important; }
@@ -73,10 +74,14 @@ button.secondary:hover:not(:disabled) { background: #262626; }
 .step-status:empty { display: none; }
 .skip-link { position: fixed; top: -100px; left: 24px; background: #fff; color: #000; padding: 12px; z-index: 10; }
 .skip-link:focus { top: 12px; }
+.site-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: var(--step-spacing); border-top: 1px solid var(--border); padding-top: 14px; color: #717171; font-size: 13px; line-height: 16px; }
+.liverpool-clock { padding: 5px 4px; color: #fff; font-family: 'Ioskeley Mono', monospace; white-space: nowrap; margin-left: auto; }
 @media (max-width: 680px) {
+  .site-footer { font-size: 11px; line-height: 14px; }
+  .liverpool-clock { padding-inline: 0; }
   :root, body { background: #151515; }
   body { padding: 0; font-size: 14px; line-height: 19px; }
-  .site-panel { padding: 24px 16px 16px; outline: none; }
+  .site-panel { padding: 24px 16px 14px; outline: none; }
   .guide-nav { gap: 10px 18px; margin-bottom: 28px; }
   .site-intro { margin-bottom: 14px; }
   h1 { font-size: 29px; line-height: 36px; }
