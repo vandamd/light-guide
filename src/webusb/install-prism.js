@@ -63,9 +63,9 @@ button.addEventListener('click', async () => {
     try {
       const launch = text(await run(adb, 'am start -W -n com.vandam.prism/.PrismActivity 2>&1 || true'));
       if (!/^Status: ok$/m.test(launch)) throw new Error('Prism did not open.');
-      notify('Prism installed and opened. Continue below.', 'success');
+      notify('Prism installed and opened. Continue to Start Shizuku below.', 'success');
     } catch {
-      notify('Prism installed. Open it on your phone and continue below.', 'success');
+      notify('Prism installed. Open it on your phone, then continue to Start Shizuku below.', 'success');
     }
   } catch (reason) {
     notify(reason.message, 'error');

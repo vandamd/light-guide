@@ -205,7 +205,7 @@ async function rebootToFastboot() {
   }
   adb = undefined;
   await old.close().catch(() => {});
-  success('Prepared. Continue to unlock the bootloader.');
+  success('Phone prepared. Continue to Unlock the bootloader below.');
 }
 
 async function fastbootChecks() {

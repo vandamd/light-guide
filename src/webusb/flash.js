@@ -202,7 +202,7 @@ $('download').onclick = () => action(1, async () => {
     await cachedRelease('write', bytes);
   }
   if (target !== 'custom' || needsSystem()) await downloadSystem(systemName(), status);
-  success('Release saved in your browser. Ready to install.');
+  success('Release saved in your browser. Continue to Enter fastboot below.');
 });
 for (const radio of tool.querySelectorAll('input[name="release"]')) radio.onchange = () => {
   if (busy) return;
@@ -254,7 +254,9 @@ async function prepareInstallation() {
   if (restoring) await run(adb, 'rm -f ' + bootPropertiesPath, stockKernel ? true : 'kernel');
   if (needsSystem()) await downloadSystem(systemName(), status);
   phase = 'checked'; await rebootAdb('fastboot');
-  success('Select the phone in bootloader fastboot.');
+  success(restoring
+    ? 'Ready. Select your phone in Restore LightOS below.'
+    : 'Ready. Select your phone in Flash the release below.');
 }
 $('enter-fastboot').onclick = () => action(3, async () => {
   check(!['writing-system', 'writing-boot', 'boot-fastboot', 'flashed', 'recovery-fastboot'].includes(phase), 'Finish the current flash before starting another firmware check.');
@@ -398,7 +400,7 @@ if (restoring) {
     await partitions(true);
     lockChecked = true;
     await rebootAdb('lock-fastboot');
-    success('Stock verified. Select the same phone in the next step to request the lock.');
+    success('Stock verified. Continue to Relock the bootloader below.');
   });
   $('confirm-lock').onclick = () => action(7, async () => {
     check(lockChecked, 'Check stock and enter fastboot first. Relocking requires verified stock partitions.');
