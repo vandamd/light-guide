@@ -36,13 +36,20 @@ export async function setupMicrog(adb, status) {
   for (const asset of assets.filter(asset => asset.kind === 'apk')) {
     const paths = text(await run(adb, 'pm path ' + asset.id + ' || true'));
     const installed = paths.split('\n').find(path => path.endsWith('/base.apk'))?.slice(8);
-    if (installed && text(await run(adb, 'sha256sum ' + quote(installed))).split(/\s+/)[0] === asset.sha256) continue;
-    const path = await transfer(adb, asset, status);
+    const matches = installed && text(await run(adb, 'sha256sum ' + quote(installed))).split(/\s+/)[0] === asset.sha256;
+    const companion = asset.id === 'com.android.vending';
+    if (matches) {
+      if (!companion) continue;
+      const details = text(await run(adb, 'dumpsys package ' + asset.id));
+      if (details.includes('forceQueryable=true (override=true)')) continue;
+      status('Making microG Companion visible to apps…');
+    }
+    const path = matches ? installed : await transfer(adb, asset, status);
     // GsfProxy targets SDK 23, below the Android 15+ installation minimum.
-    const flags = asset.id === 'com.google.android.gsf' ? ' --bypass-low-target-sdk-block' : '';
+    const flags = companion ? ' --force-queryable' : asset.id === 'com.google.android.gsf' ? ' --bypass-low-target-sdk-block' : '';
     const result = text(await run(adb, 'pm install -r' + flags + ' ' + quote(path), false, 180000));
     check(result === 'Success', asset.label + ' installation failed: ' + result);
-    await run(adb, 'rm -f ' + quote(path));
+    if (!matches) await run(adb, 'rm -f ' + quote(path));
   }
   let restart = false;
   for (const asset of assets.filter(asset => asset.kind === 'module')) {
